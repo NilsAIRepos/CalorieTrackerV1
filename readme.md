@@ -18,6 +18,7 @@ and desktop browsers and stores all data on the user's device.
 - **Deterministic calorie engine**: calories are calculated with traditional
   Python code; the LLM only supplies the required parameters.
 
+
 ## Architecture
 Calorie Tracker V1 uses a modular Python backend with a PWA frontend.
 
@@ -60,19 +61,16 @@ Calorie Tracker V1 uses a modular Python backend with a PWA frontend.
 - Python 3.11+
 - Node.js and a modern package manager (for PWA build tooling)
 
+
 ### Setup
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install fastapi uvicorn pytest
-npm install
-```
+
 
 ### Running
 ```bash
-uvicorn app.main:app --reload
-npm run dev  # serve PWA frontend
-```
+
 
 ### Testing
 ```bash
