@@ -11,3 +11,13 @@ Guidelines for REST API routers.
 ## Testing
 - Use FastAPI's `TestClient` to cover success and failure cases.
 - Avoid relying on external services in router tests; mock when necessary.
+
+## Status
+
+### Implemented
+- `entries` router for storing and listing meals.
+- `llm` router to proxy chat messages to selected providers.
+
+### Missing
+- Routers for image upload, barcode lookup, food database search, and voice transcription.
+- Validation and error handling around LLM-driven conversations.

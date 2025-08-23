@@ -10,6 +10,20 @@ Calorie Tracker V1 is a local-first calorie logging application that helps users
 - **Flexible model providers**: easily switch between local models (e.g., `llama.cpp`, `ollama`) and remote APIs such as OpenAI or Anthropic.
 - **Deterministic calorie engine**: calories are calculated with traditional Python code; the LLM only supplies the required parameters.
 
+## Implementation Status
+
+### Implemented
+- Manual form-based meal logging stored in a local SQLite database.
+- Deterministic calorie calculations via macronutrient formula.
+- Basic PWA with service worker and LLM provider settings page.
+- Pluggable LLM connectors for a local dummy model, Ollama, and OpenAI.
+
+### Missing / Planned
+- Photo analysis, barcode scanning, food database search, and voice input.
+- LLM-guided dialogue to collect missing meal details.
+- Routers and frontend components for the advanced input methods listed above.
+- Broader automated test coverage.
+
 ## Architecture
 Calorie Tracker V1 uses a modular Python backend with a PWA frontend.
 

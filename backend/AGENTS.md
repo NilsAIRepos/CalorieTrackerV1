@@ -15,3 +15,15 @@ This file covers all Python modules under the backend directory.
 ## Testing
 - Add or update unit tests under `tests/` when modifying backend code.
 - Run `pytest` from the repository root after changes.
+
+## Status
+
+### Implemented
+- `calorie_engine.py` for nutrient-based calculations and `db.py` for SQLite persistence.
+- Routers for meal entry CRUD and basic LLM chat proxying.
+- Connectors for local dummy, Ollama, and OpenAI models.
+
+### Missing
+- Processors and endpoints for images, barcodes, voice input, and database search.
+- Orchestrator tying LLM responses to entry creation.
+- Comprehensive unit tests for routers and connectors.

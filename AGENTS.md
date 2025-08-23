@@ -35,3 +35,16 @@ Welcome to the Calorie Tracker project. The following guidelines keep contributi
 - Prefer `rg` for searching the codebase; avoid expensive recursive commands.
 - Commit messages should be short and in the imperative mood (e.g., "Add OAuth connector").
 
+## Status
+
+### Implemented
+- Manual meal logging with nutrient-based calorie computation stored in a local SQLite database.
+- Vanilla JavaScript PWA with service worker and LLM provider settings page.
+- Pluggable LLM connectors for local dummy, Ollama, and OpenAI providers.
+
+### Missing
+- Image analysis, barcode scanning, and voice input endpoints.
+- LLM-guided conversations to collect missing meal details.
+- Frontend components for camera, barcode, database search, or voice capture.
+- Automated frontend and backend tests beyond the calorie engine.
+
