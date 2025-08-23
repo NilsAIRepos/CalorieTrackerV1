@@ -2,19 +2,6 @@
 
 Welcome to the Calorie Tracker project. The following guidelines keep contributions consistent and easy to maintain.
 
-## Background & Vision
-- Lightweight calorie tracker that logs daily intake with a beautiful, modern UI.
-- Users can record meals by snapping a picture, scanning a barcode, typing or searching text, querying a product database, or speaking answers aloud.
-- An LLM acts as a conversational assistant to gather missing context, but the final calorie numbers are computed by deterministic Python code.
-- The app is a Progressive Web App that runs on mobile and desktop, works offline, and stores databases and personal data client-side for privacy.
-- LLM connectors are pluggable so contributors can switch between local models (e.g., llama.cpp, Ollama) and remote providers (OpenAI, Anthropic, etc.).
-
-## Design Philosophy
-- **User-first UX:** keep flows intuitive, reduce friction, and ensure responsive, accessible layouts.
-- **Privacy & Ownership:** all persistent data lives on the user's device; avoid server-side state except for request processing.
-- **Modularity:** implement features as small, testable units; new input methods or LLM providers should extend existing interfaces.
-- **Determinism:** calorie calculations use classical formulas; the LLM only helps collect structured information.
-- **Progressive Enhancement:** the PWA should remain functional with limited connectivity or browser capabilities.
 
 ## Repository Layout
 - **backend/** – FastAPI application and business logic

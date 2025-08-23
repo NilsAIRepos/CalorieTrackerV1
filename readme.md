@@ -18,17 +18,7 @@ and desktop browsers and stores all data on the user's device.
 - **Deterministic calorie engine**: calories are calculated with traditional
   Python code; the LLM only supplies the required parameters.
 
-## Getting started
-1. Ensure Python and Node.js are installed.
-2. Clone the repository and create a virtual environment:
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate
-   pip install fastapi uvicorn pytest requests
-   npm install
-   ```
-3. Start the API and static server as shown in [Running](#running) and open the
-   app in a browser.
+
 
 ## Architecture
 Calorie Tracker V1 uses a modular Python backend with a PWA frontend.
@@ -71,96 +61,17 @@ Calorie Tracker V1 uses a modular Python backend with a PWA frontend.
 ### Requirements
 - Python 3.11+
 - Node.js and a modern package manager (for PWA build tooling)
-- `requests` Python package for the Ollama connector
+
 
 ### Setup
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install fastapi uvicorn pytest requests
-npm install
-```
-
-### Running
-```bash
-uvicorn backend.main:app --reload  # API
-python -m http.server --directory frontend 8000  # serve PWA
-```
 
 ### Testing
 ```bash
 pytest
 ```
-
-## Detailed quickstart on Windows with Ollama
-Follow these steps to run the app with a local LLM using only the Windows command prompt.
-
-1. **Verify prerequisite tools**
-   ```cmd
-   git --version
-   python --version
-   node --version
-   npm --version
-   conda --version
-   ```
-   If any command fails, install the missing tool:
-   - [Git for Windows](https://git-scm.com/download/win)
-   - [Python](https://www.python.org/downloads/windows/) (enable "Add to PATH" during setup)
-   - [Node.js](https://nodejs.org/en/download/prebuilt-installer)
-   - [Miniconda](https://docs.conda.io/en/latest/miniconda.html)
-
-2. **Install and launch Ollama**
-   - Download [Ollama for Windows](https://ollama.com/download/windows).
-   - In `cmd`, confirm it works and pull a model:
-     ```cmd
-     ollama --version
-     ollama pull llama3.2:latest
-     ollama serve
-     ```
-
-3. **Clone the repository**
-   ```cmd
-   git clone https://github.com/your-username/CalorieTrackerV1.git
-   cd CalorieTrackerV1
-   ```
-
-4. **Create and activate a Conda environment**
-   ```cmd
-   conda create -n calorie-tracker python=3.11 -y
-   conda activate calorie-tracker
-   conda info --envs
-   python --version
-   ```
-   `conda info --envs` should show a `*` next to `calorie-tracker`, and `python --version` should display `3.11.x`.
-
-5. **Install project dependencies**
-   ```cmd
-   pip install fastapi uvicorn pytest requests
-   npm install
-   ```
-
-6. **Start the backend API**
-   ```cmd
-   uvicorn backend.main:app --reload
-   ```
-   Leave this window running.
-
-7. **Start the frontend in a second `cmd` window**
-   ```cmd
-   conda activate calorie-tracker
-   python -m http.server --directory frontend 8000
-   ```
-
-8. **Configure the LLM connector**
-   - Open a browser to `http://localhost:8000`.
-   - Navigate to **Settings** and enter:
-     - Provider: `ollama`
-     - Base URL: `http://localhost:11434`
-     - Model: `llama3.2:latest`
-   - Save the settings.
-
-9. **Begin testing**
-   - Add a meal entry and confirm the calorie log updates.
 
 ## Deployment
 - Build the frontend with `npm run build` and serve the static assets.
