@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Settings</title>
+</head>
+<body>
+  <main class="container">
+    <h1>LLM Settings</h1>
+    <form id="settings-form">
+      <label>Provider
+        <select id="provider">
+          <option value="ollama">Ollama</option>
+          <option value="openai">OpenAI</option>
+          <option value="local">Local Dummy</option>
+        </select>
+      </label>
+      <input type="text" id="base-url" placeholder="Base URL" />
+      <input type="text" id="model" placeholder="Model" />
+      <button type="submit">Save</button>
+    </form>
+    <button id="test-btn">Test Connection</button>
+    <p><a href="index.html">Back</a></p>
+  </main>
+  <script src="settings.js"></script>
+</body>
+</html>
