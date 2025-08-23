@@ -10,6 +10,73 @@ Calorie Tracker V1 is a local-first calorie logging application that helps users
 - **Flexible model providers**: easily switch between local models (e.g., `llama.cpp`, `ollama`) and remote APIs such as OpenAI or Anthropic.
 - **Deterministic calorie engine**: calories are calculated with traditional Python code; the LLM only supplies the required parameters.
 
+## Quickstart (Windows)
+The steps below walk through running the project and connecting an Ollama model on a Windows machine using Command Prompt.
+
+### 1. Verify prerequisites
+Install [Git](https://git-scm.com/), [Miniconda](https://docs.conda.io/en/latest/miniconda.html), [Python](https://www.python.org/) 3.10+, [Node.js](https://nodejs.org/) 18+, and [Ollama for Windows](https://ollama.com/). Then open **cmd** and check the versions:
+
+```cmd
+python --version
+conda --version
+node --version
+npm --version
+git --version
+ollama --version
+```
+Each command should print a version number.
+
+### 2. Create and activate a Conda environment
+
+```cmd
+conda create -n calorie-tracker python=3.10 -y
+conda activate calorie-tracker
+```
+
+### 3. Clone the repository and install dependencies
+
+```cmd
+git clone <repo-url>
+cd CalorieTrackerV1
+pip install fastapi uvicorn pydantic requests
+```
+
+The frontend uses plain HTML and JavaScript, so no Node packages are required.
+
+### 4. Prepare Ollama with the LLaMA model
+
+```cmd
+ollama pull llama3.2:latest
+ollama list
+```
+
+Confirm that `llama3.2:latest` appears in the list.
+
+### 5. Run the application
+
+```cmd
+uvicorn backend.main:app --reload
+```
+
+Open a browser to `http://localhost:8000`.
+
+### 6. Configure the LLM connection in the UI
+Click **Settings** in the top of the page and fill in:
+
+- **Provider:** `ollama`
+- **Base URL:** `http://localhost:11434`
+- **Model:** `llama3.2:latest`
+
+Click **Save** and **Test** to verify the LLM responds.
+
+### 7. Run tests
+
+```cmd
+pytest
+```
+
+Stop the `uvicorn` server with `Ctrl+C` when finished.
+
 ## Implementation Status
 
 ### Implemented
@@ -56,37 +123,3 @@ Calorie Tracker V1 uses a modular Python backend with a PWA frontend.
 - `GET /barcode/{code}` – fetch product data via barcode.
 - `GET /food/search?q=` – query the food database.
 - `WS /voice` – stream voice input for transcription.
-
-## Development
-### Requirements
-- Python 3.10+
-- Node.js 18+ and a modern package manager (for PWA build tooling)
-
-### Setup
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install fastapi uvicorn pydantic requests
-npm install --prefix frontend
-```
-
-### Running
-```bash
-uvicorn backend.main:app --reload
-```
-
-### Testing
-```bash
-pytest
-```
-
-## Deployment
-- Build the frontend with `npm run build --prefix frontend` and serve the static assets.
-- Run the FastAPI application behind a TLS termination proxy.
-- Configure environment variables to select the desired LLM provider.
-
-## Contributing
-1. Fork the repository and create a feature branch.
-2. Commit changes with descriptive messages.
-3. Run `pytest` and ensure all checks pass.
-4. Submit a pull request for review.
