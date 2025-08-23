@@ -3,7 +3,14 @@
 ## Overview
 Calorie Tracker V1 is a local-first calorie logging application that helps users estimate their daily intake with the assistance of large language models (LLMs). The app is designed as a Progressive Web Application (PWA) that runs on mobile and desktop browsers and stores all data on the user's device.
 
-## Features
+## Implementation Status
+- **Backend:** FastAPI app exposes placeholder routers for barcode, image, search, and voice features. Persistence and calorie calculation logic are absent.
+- **LLM:** Dynamic provider loading exists with a stub Anthropic connector; real API calls and local model support remain to be added.
+- **Frontend:** No PWA assets or user interface have been implemented.
+- **Testing:** Baseline tests cover router stubs and the Anthropic connector.
+
+## Planned Features
+The following capabilities are planned but not yet built:
 - **Multiple input methods**: log meals by taking a photo, scanning a barcode, searching a food database, typing free text, or speaking with voice input.
 - **LLM-guided dialogue**: an LLM asks follow-up questions to gather missing information and interpret the user's responses.
 - **Local data storage**: the food database, user profile, and daily logs reside entirely on the user's machine.
@@ -18,7 +25,7 @@ Calorie Tracker V1 uses a modular Python backend with a PWA frontend.
    - Built with modern web technologies and packaged with a service worker for offline use.
    - Communicates with the backend over HTTPS/JSON.
 2. **API & Logic Layer (Python/FastAPI)**
-   - REST endpoints for logging entries, image upload, barcode lookup, and food search.
+   - REST endpoints for logging entries, image upload, barcode lookup, food search, and voice streaming.
    - Input processors handle photos, barcodes, text queries, and voice clips.
    - A conversation orchestrator interacts with pluggable LLM providers to collect missing details.
    - The calorie engine computes nutritional values using validated formulas.
@@ -37,11 +44,11 @@ Calorie Tracker V1 uses a modular Python backend with a PWA frontend.
 5. Entries are saved into the client-side database and visualized for the user.
 
 ### API sketch
-- `POST /log` – add a meal entry.
-- `POST /image` – upload a meal photo for analysis.
-- `GET /barcode/{code}` – fetch product data via barcode.
-- `GET /food/search?q=` – query the food database.
-- `WS /voice` – stream voice input for transcription.
+- `POST /api/entries/` – add a meal entry.
+- `POST /api/image/` – upload a meal photo for analysis.
+- `GET /api/barcode/{code}` – fetch product data via barcode.
+- `GET /api/search/?q=` – query the food database.
+- `WS /api/voice/ws` – stream voice input for transcription.
 
 ## Development
 ### Requirements

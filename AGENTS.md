@@ -3,6 +3,11 @@
 Welcome to the Calorie Tracker project. The following guidelines keep contributions consistent and easy to maintain.
 
 
+## Status
+- FastAPI backend exposes placeholder routers for barcode, image, search, and voice features.
+- A stub Anthropic connector exists; other LLM providers and real model logic are pending.
+- Frontend UI, persistence layers, and the calorie engine have not been implemented yet.
+
 ## Repository Layout
 - **backend/** – FastAPI application and business logic
   - `calorie_engine.py` – deterministic calorie computations
