@@ -17,12 +17,13 @@ Welcome to the Calorie Tracker project. The following guidelines keep contributi
 
 ## Development
 - Target Python 3.10+ and keep code modular with type hints.
+- Use Node.js 18+ for frontend tooling.
 - Follow the interface in `backend/llm/base.py` when adding new LLM providers.
 - Keep the frontend framework-free; prefer small, accessible components.
 - User data and databases are client-side; backend should remain stateless beyond request handling.
 
 ## Style
-- **Python:** PEP 8, four-space indentation, include docstrings for public functions.
+- **Python:** PEP 8, four-space indentation, include docstrings for public functions and FastAPI route handlers.
 - **JavaScript:** modern ES6+, two-space indentation, semicolons required.
 - **HTML/CSS:** keep markup minimal and responsive.
 
