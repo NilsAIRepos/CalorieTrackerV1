@@ -1,4 +1,6 @@
-from typing import List, Dict
+"""Local dummy model connector."""
+
+from typing import Dict, List
 
 from .base import LLMConnector
 

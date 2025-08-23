@@ -1,3 +1,5 @@
+"""Endpoints for interacting with language models."""
+
 from fastapi import APIRouter
 from pydantic import BaseModel
 
@@ -7,6 +9,7 @@ router = APIRouter()
 
 
 def get_connector(provider: str = "local", base_url: str | None = None, model: str | None = None) -> LLMConnector:
+    """Return an LLM connector for the requested provider."""
     if provider == "openai":
         try:
             import openai
@@ -25,6 +28,7 @@ class ChatRequest(BaseModel):
 
 @router.post("/chat")
 def chat(req: ChatRequest, provider: str = "local", base_url: str | None = None, model: str | None = None) -> dict:
+    """Proxy chat messages to the selected LLM provider."""
     connector = get_connector(provider, base_url, model)
     reply = connector.chat(req.messages)
     return {"reply": reply}

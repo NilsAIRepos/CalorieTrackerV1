@@ -1,5 +1,7 @@
+"""Abstractions for chat-oriented language model connectors."""
+
 from abc import ABC, abstractmethod
-from typing import List, Dict
+from typing import Dict, List
 
 
 class LLMConnector(ABC):

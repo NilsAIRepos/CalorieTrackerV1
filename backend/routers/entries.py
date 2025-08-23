@@ -1,3 +1,5 @@
+"""Endpoints for meal entry management."""
+
 from fastapi import APIRouter
 from pydantic import BaseModel
 
@@ -15,6 +17,7 @@ class EntryIn(BaseModel):
 
 @router.post("/")
 def add_entry(data: EntryIn) -> dict:
+    """Store a meal entry and return its identifier and calories."""
     if data.calories is None and data.nutrition:
         cal = calorie_engine.calories(data.nutrition)
     else:
@@ -33,6 +36,7 @@ def add_entry(data: EntryIn) -> dict:
 
 @router.get("/")
 def list_entries() -> list[dict]:
+    """Return all meal entries in reverse chronological order."""
     conn = db.get_conn()
     cur = conn.cursor()
     rows = cur.execute(

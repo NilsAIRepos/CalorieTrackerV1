@@ -1,11 +1,14 @@
-from typing import List, Dict
+"""Connector for local Ollama servers."""
+
+from typing import Dict, List
+
 import requests
 
 from .base import LLMConnector
 
 
 class OllamaConnector(LLMConnector):
-    """Connector for local Ollama servers."""
+    """Interact with an Ollama instance via its REST API."""
 
     def __init__(self, base_url: str = "http://localhost:11434", model: str = "llama3.2:latest"):
         self.base_url = base_url.rstrip('/')

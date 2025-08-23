@@ -1,10 +1,12 @@
-from typing import List, Dict
+"""Connector for OpenAI's chat API."""
+
+from typing import Dict, List
 
 from .base import LLMConnector
 
 
 class OpenAIConnector(LLMConnector):
-    """Connector for OpenAI's chat API."""
+    """Interact with OpenAI's chat completion models."""
 
     def __init__(self, client):
         self.client = client

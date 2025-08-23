@@ -1,3 +1,5 @@
+"""FastAPI application wiring."""
+
 from fastapi import FastAPI
 from .routers import entries, llm
 
@@ -9,4 +11,5 @@ app.include_router(llm.router, prefix="/api/llm", tags=["llm"])
 
 @app.get("/")
 async def root() -> dict:
+    """Basic health-check endpoint."""
     return {"status": "ok"}
