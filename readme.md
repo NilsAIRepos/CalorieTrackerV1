@@ -19,6 +19,7 @@ and desktop browsers and stores all data on the user's device.
   Python code; the LLM only supplies the required parameters.
 
 
+
 ## Architecture
 Calorie Tracker V1 uses a modular Python backend with a PWA frontend.
 
@@ -66,11 +67,6 @@ Calorie Tracker V1 uses a modular Python backend with a PWA frontend.
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-
-
-### Running
-```bash
-
 
 ### Testing
 ```bash

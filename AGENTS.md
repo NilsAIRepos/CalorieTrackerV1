@@ -2,6 +2,7 @@
 
 Welcome to the Calorie Tracker project. The following guidelines keep contributions consistent and easy to maintain.
 
+
 ## Repository Layout
 - **backend/** – FastAPI application and business logic
   - `calorie_engine.py` – deterministic calorie computations
