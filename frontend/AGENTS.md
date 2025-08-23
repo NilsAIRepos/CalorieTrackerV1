@@ -11,3 +11,15 @@ Applies to all files in `frontend/`.
 
 ## Testing
 - Frontend currently lacks automated tests; when adding any, place them under `tests/` and run `pytest` to ensure backend still passes.
+
+## Status
+
+### Implemented
+- Basic meal logging form and entry list using vanilla JS.
+- Settings page to configure and test LLM providers.
+- Service worker and manifest enabling PWA installation.
+
+### Missing
+- UI and logic for photo capture, barcode scanning, voice input, and food database search.
+- Conversation flow for LLM-driven information gathering.
+- Any automated frontend tests.

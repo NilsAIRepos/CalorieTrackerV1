@@ -9,3 +9,12 @@ Applies to all files in `tests/`.
 
 ## Running
 - Execute `pytest` from the repository root after modifying tests or source code.
+
+## Status
+
+### Implemented
+- Single unit test verifying calorie calculations.
+
+### Missing
+- Tests for API routers, database operations, and LLM connectors.
+- Any frontend-related tests.
