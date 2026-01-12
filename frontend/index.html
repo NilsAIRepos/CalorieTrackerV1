@@ -3,24 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4f46e5">
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>Calorie Tracker</title>
 </head>
 <body>
-  <main class="container">
-    <h1>Calorie Tracker</h1>
-    <p><a href="settings.html">Settings</a></p>
-    <form id="entry-form">
-      <input type="text" id="name" placeholder="Food name" required />
-      <input type="number" id="protein" placeholder="Protein (g)" step="0.1" />
-      <input type="number" id="carbs" placeholder="Carbs (g)" step="0.1" />
-      <input type="number" id="fat" placeholder="Fat (g)" step="0.1" />
-      <input type="number" id="calories" placeholder="Calories" />
-      <button type="submit">Log</button>
-    </form>
-    <ul id="entries"></ul>
-  </main>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="header-content">
+        <h1><i class="fa-solid fa-utensils"></i> Calorie Tracker</h1>
+        <a href="settings.html" class="settings-link" aria-label="Settings"><i class="fa-solid fa-gear"></i></a>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="card form-card">
+        <h2>Log Meal</h2>
+        <form id="entry-form">
+          <div class="form-group">
+            <label for="name">Food Name</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-bowl-food input-icon"></i>
+              <input type="text" id="name" placeholder="e.g. Grilled Chicken" required />
+            </div>
+          </div>
+
+          <div class="grid-inputs">
+            <div class="form-group">
+              <label for="protein">Protein (g)</label>
+              <input type="number" id="protein" placeholder="0" step="0.1" />
+            </div>
+            <div class="form-group">
+              <label for="carbs">Carbs (g)</label>
+              <input type="number" id="carbs" placeholder="0" step="0.1" />
+            </div>
+            <div class="form-group">
+              <label for="fat">Fat (g)</label>
+              <input type="number" id="fat" placeholder="0" step="0.1" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="calories">Calories</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-fire input-icon"></i>
+              <input type="number" id="calories" placeholder="Total Calories" />
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i> Log Entry
+          </button>
+        </form>
+      </section>
+
+      <section class="entries-section">
+        <h2>Today's Entries</h2>
+        <ul id="entries" class="entries-list"></ul>
+      </section>
+    </main>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>

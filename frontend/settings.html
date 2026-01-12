@@ -3,27 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4f46e5">
   <link rel="stylesheet" href="style.css" />
-  <title>Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Settings - Calorie Tracker</title>
 </head>
 <body>
-  <main class="container">
-    <h1>LLM Settings</h1>
-    <form id="settings-form">
-      <label>Provider
-        <select id="provider">
-          <option value="ollama">Ollama</option>
-          <option value="openai">OpenAI</option>
-          <option value="local">Local Dummy</option>
-        </select>
-      </label>
-      <input type="text" id="base-url" placeholder="Base URL" />
-      <input type="text" id="model" placeholder="Model" />
-      <button type="submit">Save</button>
-    </form>
-    <button id="test-btn">Test Connection</button>
-    <p><a href="index.html">Back</a></p>
-  </main>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="header-content">
+        <a href="index.html" class="back-link" aria-label="Back to Home"><i class="fa-solid fa-arrow-left"></i></a>
+        <h1>Settings</h1>
+        <div style="width: 24px;"></div> <!-- Spacer to center title -->
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="card settings-card">
+        <h2>LLM Configuration</h2>
+        <form id="settings-form">
+          <div class="form-group">
+            <label for="provider">Provider</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-server input-icon"></i>
+              <select id="provider">
+                <option value="ollama">Ollama</option>
+                <option value="openai">OpenAI</option>
+                <option value="local">Local Dummy</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="base-url">Base URL</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-link input-icon"></i>
+              <input type="text" id="base-url" placeholder="http://localhost:11434" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="model">Model</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-microchip input-icon"></i>
+              <input type="text" id="model" placeholder="llama3.2:latest" />
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-save"></i> Save Settings
+          </button>
+        </form>
+
+        <div class="separator"></div>
+
+        <button id="test-btn" class="btn btn-secondary">
+          <i class="fa-solid fa-plug"></i> Test Connection
+        </button>
+      </section>
+    </main>
+  </div>
   <script src="settings.js"></script>
 </body>
 </html>
