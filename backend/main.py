@@ -5,12 +5,13 @@ from pathlib import Path
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
-from .routers import entries, llm
+from .routers import entries, llm, chat
 
 app = FastAPI(title="Calorie Tracker API")
 
 app.include_router(entries.router, prefix="/api/entries", tags=["entries"])
 app.include_router(llm.router, prefix="/api/llm", tags=["llm"])
+app.include_router(chat.router, prefix="/api/chat", tags=["chat"])
 
 
 @app.get("/api/health")
