@@ -2,12 +2,8 @@
 
 import json
 from typing import TypedDict, Optional
-try:
-    from backend.search import search_nutrition
-    from backend.routers.llm import get_connector
-except ImportError:
-    from search import search_nutrition
-    from routers.llm import get_connector
+from .search import search_nutrition
+from .routers.llm import get_connector
 
 # Define the structure of the final output
 class Ingredient(TypedDict):
@@ -163,14 +159,3 @@ Output valid JSON only:
             }
 
         return {"text": "I'm not sure how to help with that.", "draft_entry": None}
-
-if __name__ == "__main__":
-    # Test script
-    import sys
-    # Add project root to path for imports to work
-    from pathlib import Path
-    sys.path.append(str(Path(__file__).parent.parent))
-
-    agent = Agent()
-    # Use a fake history
-    print(agent.process_message([{"role": "user", "content": "I had 2 boiled eggs"}]))

@@ -5,13 +5,8 @@ from pydantic import BaseModel
 from typing import List, Optional, Any
 import logging
 
-# Adjust import to be relative or absolute depending on how app is run
-try:
-    from ..agent import Agent
-    from .. import db
-except ImportError:
-    from backend.agent import Agent
-    from backend import db
+from ..agent import Agent
+from .. import db
 
 router = APIRouter()
 

@@ -1,6 +1,6 @@
 """Search engine wrapper for online nutritional lookups."""
 
-from ddgs import DDGS
+from duckduckgo_search import DDGS
 
 def search_nutrition(query: str, max_results: int = 3) -> list[str]:
     """
