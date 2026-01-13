@@ -17,8 +17,8 @@ router = APIRouter()
 
 # Instantiate the agent globally or per request
 # For this V1, we use a global instance which might be configured via env vars
-# We default to 'local' to avoid startup crash if no keys are present
-agent = Agent(provider="local")
+# We default to 'ollama' as the preferred local provider
+agent = Agent(provider="ollama")
 
 class Message(BaseModel):
     role: str
@@ -66,11 +66,11 @@ def chat_message(req: ChatRequest):
     # (In a real app, we might pool agents or pass config to process_message)
     # Here we just create a new one for simplicity if needed, or use the global one.
     # To support the `provider` param:
-    provider_to_use = req.provider or "local"
+    provider_to_use = req.provider or "ollama"
     try:
         current_agent = Agent(provider=provider_to_use, model=req.model)
     except Exception:
-        # Fallback to local if provider init fails (e.g. missing keys)
+        # Fallback to local (dummy) if provider init fails
         current_agent = Agent(provider="local")
 
     # 3. Process
