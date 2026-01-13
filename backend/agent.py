@@ -72,6 +72,7 @@ Output ONLY raw JSON. Do not use Markdown blocks."""
         for msg in history:
             messages.append({"role": msg["role"], "content": msg["content"]})
 
+        response_text = None
         try:
             response_text = self.connector.chat(messages)
             # Try to clean the response in case LLM adds backticks
@@ -85,8 +86,15 @@ Output ONLY raw JSON. Do not use Markdown blocks."""
             plan = json.loads(response_text)
         except Exception as e:
             # Fallback for parsing errors
-            print(f"Agent JSON Parse Error: {e}")
-            print(f"Response text was: {response_text}")
+            print(f"Agent JSON Parse/Chat Error: {e}")
+            if response_text:
+                print(f"Response text was: {response_text}")
+
+            # Check for connection error to provide better message
+            str_e = str(e)
+            if "Connection refused" in str_e or "Max retries exceeded" in str_e:
+                return {"text": "I cannot connect to the AI service. Please ensure Ollama is running.", "draft_entry": None}
+
             return {"text": "I'm having trouble understanding. Could you please specify what you ate?", "draft_entry": None}
 
         action = plan.get("action")
