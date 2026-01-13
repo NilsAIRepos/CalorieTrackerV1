@@ -2,12 +2,23 @@
 
 import json
 from typing import TypedDict, Optional
-try:
-    from backend.search import search_nutrition
-    from backend.routers.llm import get_connector
-except ImportError:
-    from search import search_nutrition
-    from routers.llm import get_connector
+import sys
+
+# Determine if we are running as a package or a script
+if __package__:
+    from .search import search_nutrition
+    from .routers.llm import get_connector
+else:
+    # When running as a script, we need to ensure we can import 'search' and 'routers'
+    # We assume the script is run from the 'backend' directory or root
+    try:
+        from search import search_nutrition
+        from routers.llm import get_connector
+    except ImportError:
+        # Fallback if running from root and backend is not in path directly as top level
+        # This handles 'python backend/agent.py' if the CWD is root
+        from backend.search import search_nutrition
+        from backend.routers.llm import get_connector
 
 # Define the structure of the final output
 class Ingredient(TypedDict):
@@ -167,8 +178,8 @@ Output valid JSON only:
 if __name__ == "__main__":
     # Test script
     import sys
-    # Add project root to path for imports to work
     from pathlib import Path
+    # Add project root to path for imports to work if run directly
     sys.path.append(str(Path(__file__).parent.parent))
 
     agent = Agent()
