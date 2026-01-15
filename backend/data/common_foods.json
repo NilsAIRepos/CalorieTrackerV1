@@ -1,0 +1,22 @@
+{
+  "apple": "Apple (Medium, 182g): 95 kcal, 0.5g Protein, 25g Carbs, 0.3g Fat, 19g Sugar. USDA Data.",
+  "banana": "Banana (Medium, 118g): 105 kcal, 1.3g Protein, 27g Carbs, 0.4g Fat, 14g Sugar. USDA Data.",
+  "boiled egg": "Boiled Egg (Large, 50g): 78 kcal, 6g Protein, 0.6g Carbs, 5g Fat, 0.6g Sugar. USDA Data.",
+  "egg": "Egg (Large, 50g): 78 kcal, 6g Protein, 0.6g Carbs, 5g Fat, 0.6g Sugar. USDA Data.",
+  "chicken breast": "Chicken Breast (Cooked, 100g): 165 kcal, 31g Protein, 0g Carbs, 3.6g Fat, 0g Sugar. USDA Data.",
+  "white rice": "White Rice (Cooked, 1 cup, 158g): 205 kcal, 4.3g Protein, 44.5g Carbs, 0.4g Fat, 0.1g Sugar. USDA Data.",
+  "brown rice": "Brown Rice (Cooked, 1 cup, 195g): 216 kcal, 5g Protein, 45g Carbs, 1.8g Fat, 0.7g Sugar. USDA Data.",
+  "oatmeal": "Oatmeal (Cooked, 1 cup, 234g): 158 kcal, 6g Protein, 27g Carbs, 3.2g Fat, 1.1g Sugar. USDA Data.",
+  "milk": "Whole Milk (1 cup, 244g): 149 kcal, 8g Protein, 12g Carbs, 8g Fat, 12g Sugar. USDA Data.",
+  "almonds": "Almonds (1 oz, 28g): 164 kcal, 6g Protein, 6g Carbs, 14g Fat, 1.2g Sugar. USDA Data.",
+  "avocado": "Avocado (Medium, 150g): 240 kcal, 3g Protein, 12.8g Carbs, 22g Fat, 1g Sugar. USDA Data.",
+  "potato": "Baked Potato (Medium, 173g): 161 kcal, 4.3g Protein, 37g Carbs, 0.2g Fat, 2g Sugar. USDA Data.",
+  "sweet potato": "Baked Sweet Potato (Medium, 114g): 103 kcal, 2.3g Protein, 23.6g Carbs, 0.2g Fat, 7g Sugar. USDA Data.",
+  "broccoli": "Broccoli (Cooked, 1 cup, 156g): 55 kcal, 3.7g Protein, 11g Carbs, 0.6g Fat, 2g Sugar. USDA Data.",
+  "spinach": "Spinach (Raw, 1 cup, 30g): 7 kcal, 0.9g Protein, 1.1g Carbs, 0.1g Fat, 0.1g Sugar. USDA Data.",
+  "yogurt": "Greek Yogurt (Plain, Nonfat, 1 container, 170g): 100 kcal, 17g Protein, 6g Carbs, 0.4g Fat, 6g Sugar. USDA Data.",
+  "salmon": "Salmon (Cooked, 3 oz, 85g): 177 kcal, 19g Protein, 0g Carbs, 11g Fat, 0g Sugar. USDA Data.",
+  "bread": "Whole Wheat Bread (1 slice, 43g): 110 kcal, 4g Protein, 20g Carbs, 1.5g Fat, 2g Sugar. USDA Data.",
+  "butter": "Butter (1 tbsp, 14g): 102 kcal, 0.1g Protein, 0g Carbs, 11.5g Fat, 0g Sugar. USDA Data.",
+  "olive oil": "Olive Oil (1 tbsp, 13.5g): 119 kcal, 0g Protein, 0g Carbs, 13.5g Fat, 0g Sugar. USDA Data."
+}

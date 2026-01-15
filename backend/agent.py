@@ -3,6 +3,16 @@
 import json
 from typing import TypedDict, Optional
 import sys
+from pathlib import Path
+
+# Load common foods
+DATA_DIR = Path(__file__).parent / "data"
+COMMON_FOODS = {}
+try:
+    with open(DATA_DIR / "common_foods.json", "r") as f:
+        COMMON_FOODS = json.load(f)
+except Exception as e:
+    print(f"Warning: Could not load common_foods.json: {e}")
 
 # Determine if we are running as a package or a script
 if __package__:
@@ -58,7 +68,9 @@ class Agent:
         system_instruction = """You are a calorie tracking assistant. Your goal is to log meals accurately.
 Analyze the user's latest input in the context of the conversation.
 - If the user provides a food item but details are missing (e.g. quantity, preparation method), output {"action": "CLARIFY", "question": "..."}.
-- If the user provides specific food items, output {"action": "SEARCH", "items": ["item 1", "item 2"]}.
+- If the user provides specific food items:
+    - If the item is a common food (e.g., apple, egg, rice, chicken), output {"action": "LOOKUP", "items": ["item 1"]}.
+    - If the item is complex, branded, or obscure, output {"action": "SEARCH", "items": ["item 1"]}.
 - If the user is just saying hi or asking non-food questions, output {"action": "CHITCHAT", "reply": "..."}.
 
 Output ONLY raw JSON. Do not use Markdown blocks."""
@@ -105,24 +117,51 @@ Output ONLY raw JSON. Do not use Markdown blocks."""
         if action == "CLARIFY":
             return {"text": plan.get("question", "Could you provide more details?"), "draft_entry": None}
 
-        if action == "SEARCH":
+        if action == "SEARCH" or action == "LOOKUP":
             items = plan.get("items", [])
             ingredients_data = []
 
-            # Notify user (in a real streaming setup this would be better, here we just do the work)
-            # We will gather info for each item.
-
             for item in items:
-                # 1. Search
-                snippets = search_nutrition(item)
-                snippet_text = "\n".join(snippets)
+                # 1. Determine Context (Lookup or Search)
+                context_text = ""
+                source_label = ""
+
+                # Check DB first if action is LOOKUP or as fallback?
+                # We prioritize the DB if action is LOOKUP, but also check it if SEARCH?
+                # The user prompt says LOOKUP for common foods.
+
+                found_in_db = False
+                if action == "LOOKUP":
+                    # Try to find in DB
+                    key = item.lower().strip()
+                    # exact match
+                    val = COMMON_FOODS.get(key)
+                    # fuzzy match attempt
+                    if not val:
+                        # naive fuzzy: check if key is substring of any db key or vice versa
+                        # Sort keys by length descending to match longest key first (e.g. "sweet potato" before "potato")
+                        sorted_keys = sorted(COMMON_FOODS.keys(), key=len, reverse=True)
+                        for db_k in sorted_keys:
+                            if db_k in key or key in db_k:
+                                val = COMMON_FOODS[db_k]
+                                break
+
+                    if val:
+                        context_text = f"Database Entry: {val}"
+                        source_label = "database"
+                        found_in_db = True
+
+                if not found_in_db:
+                    # Fallback to search (or if action was SEARCH)
+                    snippets = search_nutrition(item)
+                    context_text = "Search Results:\n" + "\n".join(snippets)
+                    source_label = "search results"
 
                 # 2. Extract Data using LLM
                 extract_prompt = [
                     {"role": "system", "content": f"""You are a nutritionist.
-Based on the following search results, extract the nutritional info for '{item}'.
-Search Results:
-{snippet_text}
+Based on the following {source_label}, extract the nutritional info for '{item}'.
+{context_text}
 
 Estimate the values for the specific amount mentioned in '{item}'.
 If the amount is not clear in the text, use a standard serving size and note it.
@@ -151,7 +190,6 @@ Output valid JSON only:
                     ingredients_data.append(data)
                 except Exception as e:
                     print(f"Extraction Error for {item}: {e}")
-                    # Fallback or skip
                     continue
 
             # 3. Synthesize Final Entry
